@@ -25,4 +25,4 @@ while True:
     conn = connect.connect(DATABASE_NAME)
     connect.write(conn, temperature_reading())
     connect.close(conn)
-    time.sleep(900)
+    time.sleep(5)

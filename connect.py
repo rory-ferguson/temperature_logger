@@ -26,7 +26,7 @@ def write(database, temp):
     """
     c = database.cursor()
     try:
-        c.execute("INSERT INTO temps values(datetime('now'), (?))", (temp,))
+        c.execute("INSERT INTO temps values(datetime('now', 'localtime'), (?))", (temp,))
     except Exception as e:
         print(e)
             
