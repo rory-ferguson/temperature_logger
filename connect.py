@@ -1,11 +1,8 @@
 import sqlite3
-import sys
-import os
-
 
 
 def connect(database):
-	""" Connect to database
+	""" Create a connection to a database
 		:param database: database name
 		:return: conn
 	"""
@@ -18,9 +15,33 @@ def connect(database):
 	return None
 
 
+def write(database, temp):
+	""" Log entry to the database
+		:param database: database object
+		:param temp: temperature reading
+	"""
+	try:
+		c = database.cursor()
+		c.execute("INSERT INTO temps values(datetime('now'), (?))", (temp,))
+		database.commit()
+	except Exception as e:
+		print(e)
+
+
+def close(database):
+	""" Closes the database connection
+		:param database: database object
+	"""	
+	try:
+		database.close()
+	except Exception as e:
+		print(e)
+
+
 def main():
 	conn = connect('temperature.db')
-	print(conn)
+	write(conn, "22")
+	close(conn)
 
 
 if __name__ == '__main__':
