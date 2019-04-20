@@ -21,6 +21,7 @@ def temperature_reading():
 
 
 while True:
+    print("Running ")
     conn = connect.connect(DATABASE_NAME)
     connect.write(conn, temperature_reading())
     connect.close(conn)
