@@ -7,12 +7,11 @@ def temperature_reading():
         :rtype: float
     """
     temperature = weather.temperature()
-    return "{0:.2f}".format(temperature)
+    return float("{0:.2f}".format(temperature))
 
 
 def main():
     print(temperature_reading())
-
 
 if __name__ == '__main__':
     main()
