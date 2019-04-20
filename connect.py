@@ -1,6 +1,5 @@
 import sqlite3
 
-
 def connect(database):
 	""" Create a connection to a database
 		:param database: database name
@@ -19,27 +18,23 @@ def write(database, temp):
 	""" Log entry to the database
 		:param database: database object
 		:param temp: temperature reading
+		:return: id of commited row
 	"""
-	try:
-		c = database.cursor()
-		c.execute("INSERT INTO temps values(datetime('now'), (?))", (temp,))
-		database.commit()
-	except Exception as e:
-		print(e)
+	c = database.cursor()
+	c.execute("INSERT INTO temps values(datetime('now'), (?))", (temp,))
+	database.commit()
+	return c.lastrowid
 
 
 def close(database):
 	""" Closes the database connection
 		:param database: database object
 	"""	
-	try:
-		database.close()
-	except Exception as e:
-		print(e)
+	database.close()
 
 
 def main():
-	conn = connect('temperature.db')
+	conn = connect('temperatue.db')
 	write(conn, "22")
 	close(conn)
 
