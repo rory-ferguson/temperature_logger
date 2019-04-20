@@ -1,4 +1,14 @@
+import time
 from envirophat import weather
+import connect
+
+
+"""
+    Log temperature from enviro pHat sensor for the rasberry pi
+    to an sqlite3 database every 15 minutes
+"""
+
+DATABASE_NAME = 'temperature.db'
 
 
 def temperature_reading():
@@ -10,8 +20,8 @@ def temperature_reading():
     return float("{0:.2f}".format(temperature))
 
 
-def main():
-    print(temperature_reading())
-
-if __name__ == '__main__':
-    main()
+while True:
+    conn = connect.connect(DATABASE_NAME)
+    connect.write(conn, temperature_reading())
+    connect.close(conn)
+    time.sleep(900)
