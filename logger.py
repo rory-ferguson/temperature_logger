@@ -22,7 +22,8 @@ def temperature_reading():
 
 while True:
     conn = connect.connect(DATABASE_NAME)
-    connect.write(conn, temperature_reading())
+    temp = temperature_reading()
+    connect.write(conn, temp)
     connect.close(conn)
-    print("Running logger. temperature = {}°C".format(temperature_reading()))
+    print("Running logger. temperature = {}°C".format(temp))
     time.sleep(900)
