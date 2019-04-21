@@ -40,14 +40,3 @@ def close(database):
         :param database: database object
     """
     database.close()
-
-
-def main():
-    conn = connect('temperature.db')
-    write(conn, "22")
-    close(conn)
-
-
-if __name__ == '__main__':
-    main()
-
