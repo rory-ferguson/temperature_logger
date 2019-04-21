@@ -26,13 +26,13 @@ def write(database, temp):
     """
     c = database.cursor()
     try:
+        c.execute('''CREATE TABLE IF NOT EXISTS temps (timestamp DATETIME, temp NUMERIC);''')
         c.execute("INSERT INTO temps values(datetime('now', 'localtime'), (?))", (temp,))
     except Exception as e:
         print(e)
             
     database.commit()
-    return c.lastrowid
-    
+    return c.lastrowid  
 
 
 def close(database):
